@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import Note from "./Note";
 
-export default function List({ noteList, setNoteList }) {
+export default function List({
+  noteList,
+  setNoteList,
+  classLists,
+  setIsSorted,
+}) {
   const noteElement = noteList.map((item) => {
     return (
       <Note
         setNoteList={setNoteList}
         noteList={noteList}
         key={item.id}
-        note={item.text}
-        id={item.id}
+        note={item}
+        classLists={classLists}
+        setIsSorted={setIsSorted}
       />
     );
   });

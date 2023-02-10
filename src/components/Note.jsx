@@ -7,34 +7,35 @@ import {
 
 export default function Note(props) {
   const [isChecked, setIsChecked] = useState(false);
-  const [deleteNote, setDeleteNote] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  console.log(props.noteList);
 
+  function handleCheckBox() {
+    setIsChecked((prevState) => !prevState);
+  }
   const checkBoxElement = isChecked ? (
-    <RiCheckboxCircleFill
-      onClick={() => setIsChecked((prevState) => !prevState)}
-      className="checkBullet"
-    />
+    <RiCheckboxCircleFill onClick={handleCheckBox} className="checkBullet" />
   ) : (
     <RiCheckboxBlankCircleFill
-      onClick={() => setIsChecked((prevState) => !prevState)}
+      onClick={handleCheckBox}
       className="checkBullet"
     />
   );
+
   function deleteNoteFromList(id) {
-    console.log(id);
     props.setNoteList((prevState) =>
       prevState.filter((note) => note.id !== id)
     );
   }
 
   return (
-    <div className={`note ${isChecked && "crosNote"}`}>
+    <div
+      className={`note ${props.classLists[props.note.priority]} ${
+        isChecked && "crosNote"
+      }`}
+    >
       {checkBoxElement}
-      <p className="note-text">{props.note}</p>
+      <p className="note-text">{props.note.text}</p>
       <RiDeleteBin2Line
-        onClick={() => deleteNoteFromList(props.id)}
+        onClick={() => deleteNoteFromList(props.note.id)}
         className="deleteBin"
       />
     </div>

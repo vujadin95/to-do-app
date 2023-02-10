@@ -1,38 +1,31 @@
 import React, { useState } from "react";
 
-export default function Input({ setNoteList }) {
+export default function Input({ setNoteList, noteList, classLists }) {
   const [isFocused, setIsFocused] = useState(false);
   const [note, setNote] = useState("");
-
-  const classLists = {
-    0: "blue",
-    1: "green",
-    2: "yellow",
-    3: "orange",
-    4: "red",
-  };
-
-  console.log(note);
+  const [priority, setPriority] = useState(0);
 
   function addNoteToList() {
     if (note) {
+      setPriority(0);
       setIsFocused(false);
       setNote("");
       setNoteList((prevNoteList) => [
         ...prevNoteList,
-        { id: prevNoteList.length + 1, text: note, priority: 0 },
+        { id: prevNoteList.length + 1, text: note, priority: priority },
       ]);
     } else {
       alert("unesi belesku");
     }
   }
 
-  function handleChange(e) {
+  function handleInputChange(e) {
     setNote(e.target.value);
   }
+
   function handlePriority(e) {
-    console.log(e.target.id);
     e.target.classList.add(classLists[e.target.id]);
+    setPriority(e.target.id);
   }
 
   return (
@@ -42,7 +35,7 @@ export default function Input({ setNoteList }) {
         placeholder="Add new note"
         name="note"
         value={note}
-        onChange={(e) => handleChange(e)}
+        onChange={(e) => handleInputChange(e)}
         onFocus={() => setIsFocused(true)}
       />
       {isFocused && (

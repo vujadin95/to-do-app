@@ -12,6 +12,12 @@ body {
   justify-content: center;
 }
 
+.logo {
+  width: 100px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
 .container {
   /* background-color: yellow; */
   display: flex;
@@ -73,7 +79,7 @@ body {
 
 .note {
   padding: 1em;
-  background-color: #6cdae7;
+  /* background-color: #6cdae7; */
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -90,9 +96,7 @@ body {
   font-weight: 600;
 }
 
-.crosNote {
-  background-color: grey;
-}
+
 
 .deleteBin,
 .checkBullet {
@@ -133,20 +137,32 @@ body {
 
 .blue {
   background-color: #6cdae7;
+  border: none;
 }
 
 .green {
   background-color: #07f407;
+  border: none;
 }
 
 .yellow {
   background-color: #ffcf00;
+  border: none;
+
 }
 
 .orange {
   background-color: #ff5722;
+  border: none;
+
 }
 
 .red {
   background-color: #ff0000;
+  border: none;
+
+}
+
+.crosNote {
+  background-color: grey;
 }
