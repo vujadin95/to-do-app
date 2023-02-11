@@ -1,6 +1,5 @@
 import Input from "./components/Input";
 import List from "./components/List";
-
 import { useState, useEffect } from "react";
 
 function App() {
@@ -16,35 +15,13 @@ function App() {
     localStorage.setItem("userNotes", JSON.stringify(noteList));
   }, [noteList]);
 
-  const classLists = {
-    0: "blue",
-    1: "green",
-    2: "yellow",
-    3: "orange",
-    4: "red",
-  };
-  console.log(noteList);
-
-  function sortByPriority() {
-    setNoteList((prevState) =>
-      prevState.slice().sort((a, b) => b.priority - a.priority)
-    );
-    setIsSorted(true);
-  }
   return (
     <div className="container">
-      <img src="/src/assets/todo.svg" className="logo" />
-      <Input
-        classLists={classLists}
-        noteList={noteList}
-        setNoteList={setNoteList}
-      />
-      {noteList.length > 1 && !isSorted && (
-        <p onClick={sortByPriority}>Sort by Priority</p>
-      )}
+      <img src="/src/assets/logo1.png" className="logo" />
+      <Input setIsSorted={setIsSorted} setNoteList={setNoteList} />
       <List
+        isSorted={isSorted}
         setIsSorted={setIsSorted}
-        classLists={classLists}
         noteList={noteList}
         setNoteList={setNoteList}
       />

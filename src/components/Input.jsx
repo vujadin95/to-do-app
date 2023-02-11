@@ -1,18 +1,21 @@
 import React, { useState } from "react";
+import { nanoid } from "nanoid";
+import Button from "./Button";
 
-export default function Input({ setNoteList, noteList, classLists }) {
+export default function Input({ setNoteList, setIsSorted }) {
   const [isFocused, setIsFocused] = useState(false);
   const [note, setNote] = useState("");
   const [priority, setPriority] = useState(0);
 
   function addNoteToList() {
     if (note) {
+      setIsSorted(false);
       setPriority(0);
       setIsFocused(false);
       setNote("");
       setNoteList((prevNoteList) => [
         ...prevNoteList,
-        { id: prevNoteList.length + 1, text: note, priority: priority },
+        { id: nanoid(), text: note, priority: priority },
       ]);
     } else {
       alert("unesi belesku");
@@ -24,7 +27,6 @@ export default function Input({ setNoteList, noteList, classLists }) {
   }
 
   function handlePriority(e) {
-    e.target.classList.add(classLists[e.target.id]);
     setPriority(e.target.id);
   }
 
@@ -39,21 +41,7 @@ export default function Input({ setNoteList, noteList, classLists }) {
         onFocus={() => setIsFocused(true)}
       />
       {isFocused && (
-        <>
-          <div className="priority-wrapper">
-            <p> Priority:</p>
-            <div onClick={handlePriority} className="check-priority-wrapper">
-              <div className="priority blue" id="0"></div>
-              <div className="priority " id="1"></div>
-              <div className="priority " id="2"></div>
-              <div className="priority " id="3"></div>
-              <div className="priority " id="4"></div>
-            </div>
-          </div>
-          <button onClick={addNoteToList} className="add-note-btn">
-            Add Note
-          </button>
-        </>
+        <Button handlePriority={handlePriority} addNoteToList={addNoteToList} />
       )}
     </div>
   );

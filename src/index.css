@@ -5,26 +5,31 @@
 }
 
 body {
-  background-color: #423c3c;
-  padding-top: 100px;
+  background-color: #2c2828;
   font-family: 'Karla', sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-}
-
-.logo {
-  width: 100px;
-  margin-bottom: 20px;
-  border-radius: 10px;
+  height: 100vh;
 }
 
 .container {
-  /* background-color: yellow; */
+  background-color: #1C1C1C;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3em;
-  border-radius: 10px;
+  padding: 2.5em 1em;
+  max-width: 550px;
+  min-height: 550px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 1);
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 20px;
+  background-color: #1C1C1C;
 }
 
 .input {
@@ -35,7 +40,7 @@ body {
   background-color: #f5f5f5;
   border-radius: 6px;
   color: #1C1C1C;
-  min-width: 400px;
+  width: 90%;
   padding: 20px;
 }
 
@@ -71,32 +76,30 @@ body {
 .note-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   gap: 1em;
   margin-top: 20px;
-  max-width: 300px;
+  width: 90%;
 }
 
 .note {
   padding: 1em;
-  /* background-color: #6cdae7; */
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 0.5em;
   cursor: pointer;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(28, 28, 28, 0.75);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(28, 28, 28, 0.75);
-  box-shadow: 2px 2px 5px 0px rgba(28, 28, 28, 0.75);
+}
+
+.note>.deleteBin {
+  margin-left: auto;
 }
 
 .note-text {
   font-size: 1.125rem;
   font-weight: 600;
+  text-transform: uppercase;
+  text-align: start;
 }
-
-
 
 .deleteBin,
 .checkBullet {
@@ -113,21 +116,23 @@ body {
 .priority-wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: 100%;
+
 }
 
 .priority {
-  width: 18px;
-  height: 18px;
-  border: 0.1px solid #1C1C1C;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #f5f5f5
 }
 
 .check-priority-wrapper {
   display: flex;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .priority:hover {
@@ -137,32 +142,36 @@ body {
 
 .blue {
   background-color: #6cdae7;
-  border: none;
 }
 
 .green {
   background-color: #07f407;
-  border: none;
 }
 
 .yellow {
   background-color: #ffcf00;
-  border: none;
-
 }
 
 .orange {
   background-color: #ff5722;
-  border: none;
 
 }
 
 .red {
   background-color: #ff0000;
-  border: none;
 
 }
 
 .crosNote {
   background-color: grey;
+}
+
+.sort-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #f5f5f5;
+  padding: 1em 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
 }
