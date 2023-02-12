@@ -1,6 +1,7 @@
 import Input from "./components/Input";
 import List from "./components/List";
 import { useState, useEffect } from "react";
+import Logo from "./images/logo.png";
 
 function App() {
   const [noteList, setNoteList] = useState([]);
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div className="todo-container">
-      <img src="./src/assets/logo.png" className="todo-logo" alt="todo logo" />
+      <img src={Logo} className="todo-logo" alt="todo logo" />
       <Input setIsSorted={setIsSorted} setNoteList={setNoteList} />
       <List
         isSorted={isSorted}
