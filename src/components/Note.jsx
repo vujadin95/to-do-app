@@ -6,9 +6,9 @@ import {
   RiDeleteBin2Fill,
 } from "react-icons/ri";
 
-export default function Note(props) {
-  const [isChecked, setIsChecked] = useState(false);
+function Note(props) {
   const [isHovered, setIsHovered] = useState(false);
+
   const classLists = {
     0: "blue",
     1: "green",
@@ -17,39 +17,44 @@ export default function Note(props) {
     4: "red",
   };
 
-  function handleCheckBox() {
-    setIsChecked((prevState) => !prevState);
-  }
-
   function deleteNoteFromList(id) {
     props.setNoteList((prevState) =>
       prevState.filter((note) => note.id !== id)
     );
   }
-  const deleteBinElement = isHovered ? (
-    <RiDeleteBin2Fill />
-  ) : (
-    <RiDeleteBin2Line />
-  );
+
+  function handleCheck(id) {
+    props.setNoteList((prevState) => {
+      return prevState.map((item) =>
+        item.id === id ? { ...item, isChecked: !item.isChecked } : item
+      );
+    });
+    props.sortIfChecked();
+  }
+
   return (
     <div
-      className={`note ${classLists[props.note.priority]} ${
-        isChecked && "crosNote"
+      className={`note-item ${classLists[props.note.priority]} ${
+        props.note.isChecked && "crosNote"
       }`}
     >
-      <div onClick={handleCheckBox} className="checkBullet">
-        {isChecked ? <RiCheckboxCircleFill /> : <RiCheckboxBlankCircleFill />}
+      <div onClick={() => handleCheck(props.note.id)} className="checkBullet">
+        {props.note.isChecked ? (
+          <RiCheckboxCircleFill />
+        ) : (
+          <RiCheckboxBlankCircleFill />
+        )}
       </div>
       <p className="note-text">{props.note.text}</p>
-
       <div
-        onClick={() => deleteNoteFromList(props.note.id)}
         className="deleteBin"
+        onClick={() => deleteNoteFromList(props.note.id)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {deleteBinElement}
+        {isHovered ? <RiDeleteBin2Fill /> : <RiDeleteBin2Line />}
       </div>
     </div>
   );
 }
+export default Note;

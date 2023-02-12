@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import { RiContactsBook2Fill } from "react-icons/ri";
 import Note from "./Note";
 
-export default function List({ noteList, setNoteList, isSorted, setIsSorted }) {
+function List({ noteList, setNoteList, isSorted, setIsSorted }) {
+  //
   function sortByPriority() {
     setNoteList((prevState) =>
-      prevState.slice().sort((a, b) => b.priority - a.priority)
+      prevState.slice().sort((a, b) => {
+        if (!a.isChecked && !b.isChecked) {
+          return b.priority - a.priority;
+        }
+      })
     );
     setIsSorted(true);
+  }
+
+  function sortIfChecked() {
+    setNoteList((prevState) =>
+      prevState.slice().sort((a, b) => a.isChecked - b.isChecked)
+    );
+    setIsSorted(false);
   }
 
   const noteElement = noteList.map((item) => {
@@ -17,13 +27,13 @@ export default function List({ noteList, setNoteList, isSorted, setIsSorted }) {
         noteList={noteList}
         key={item.id}
         note={item}
-        setIsSorted={setIsSorted}
+        sortIfChecked={sortIfChecked}
       />
     );
   });
 
   return (
-    <div className="note-container">
+    <div className="list-container">
       {noteList.length > 1 && !isSorted && (
         <p className="sort-text" onClick={sortByPriority}>
           Sort by Priority
@@ -33,3 +43,4 @@ export default function List({ noteList, setNoteList, isSorted, setIsSorted }) {
     </div>
   );
 }
+export default List;

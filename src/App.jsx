@@ -16,8 +16,8 @@ function App() {
   }, [noteList]);
 
   return (
-    <div className="container">
-      <img src="/src/assets/logo1.png" className="logo" />
+    <div className="todo-container">
+      <img src="/src/assets/logo1.png" className="todo-logo" />
       <Input setIsSorted={setIsSorted} setNoteList={setNoteList} />
       <List
         isSorted={isSorted}

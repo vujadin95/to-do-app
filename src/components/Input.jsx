@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import Button from "./Button";
 
-export default function Input({ setNoteList, setIsSorted }) {
+function Input({ setNoteList, setIsSorted }) {
   const [isFocused, setIsFocused] = useState(false);
   const [note, setNote] = useState("");
   const [priority, setPriority] = useState(0);
@@ -12,18 +12,14 @@ export default function Input({ setNoteList, setIsSorted }) {
       setIsSorted(false);
       setPriority(0);
       setIsFocused(false);
-      setNote("");
       setNoteList((prevNoteList) => [
         ...prevNoteList,
-        { id: nanoid(), text: note, priority: priority },
+        { id: nanoid(), text: note, isChecked: false, priority: priority },
       ]);
+      setNote("");
     } else {
       alert("unesi belesku");
     }
-  }
-
-  function handleInputChange(e) {
-    setNote(e.target.value);
   }
 
   function handlePriority(e) {
@@ -31,13 +27,14 @@ export default function Input({ setNoteList, setIsSorted }) {
   }
 
   return (
-    <div className="input">
+    <div className="input-container">
       <input
+        className="input-text"
         type="text"
         placeholder="Add new note"
         name="note"
         value={note}
-        onChange={(e) => handleInputChange(e)}
+        onChange={(e) => setNote(e.target.value)}
         onFocus={() => setIsFocused(true)}
       />
       {isFocused && (
@@ -46,3 +43,4 @@ export default function Input({ setNoteList, setIsSorted }) {
     </div>
   );
 }
+export default Input;

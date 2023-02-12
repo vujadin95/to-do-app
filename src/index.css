@@ -4,56 +4,60 @@
   padding: 0;
 }
 
+:root {
+  --dark-background-color-1: #202124;
+  --dark-background-color-2: #303134;
+  --dark-text-color: #1c1c1c;
+}
+
 body {
-  background-color: #2c2828;
+  background-color: var(--dark-background-color-1);
   font-family: 'Karla', sans-serif;
+  color: var(--dark-text-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
 }
 
-.container {
-  background-color: #1C1C1C;
+.todo-container {
+  background-color: var(--dark-background-color-2);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2.5em 1em;
-  max-width: 550px;
-  min-height: 550px;
+  max-width: 450px;
+  min-width: 200px;
   width: 100%;
   margin: 0 auto;
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 1);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 1);
+  border-radius: 10px;
 }
 
-.logo {
-  width: 120px;
+.todo-logo {
+  width: 100px;
   margin-bottom: 20px;
-  background-color: #1C1C1C;
 }
 
-.input {
+.input-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   background-color: #f5f5f5;
-  border-radius: 6px;
-  color: #1C1C1C;
+  border-radius: 10px;
   width: 90%;
   padding: 20px;
 }
 
-.input>input {
+.input-text {
   width: 100%;
   font-size: 1rem;
   font-family: inherit;
   padding: 0.5em 1em;
-  border: 1px solid #1C1C1C;
-  color: #1C1C1C;
+  border: 1px solid var(--dark-text-color);
   font-weight: 600;
 }
-
 
 .add-note-btn {
   font-family: inherit;
@@ -62,7 +66,7 @@ body {
   font-size: 1.25rem;
   width: 100%;
   border: none;
-  background-color: #423c3c;
+  background-color: var(--dark-background-color-2);
   color: #f5f5f5;
   text-transform: uppercase;
   border-radius: 6px;
@@ -70,10 +74,11 @@ body {
 }
 
 .add-note-btn:hover {
-  background-color: #3a3838;
+  background-color: var(--dark-background-color-1);
+  transition: all 0.4s ease;
 }
 
-.note-container {
+.list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,29 +87,36 @@ body {
   width: 90%;
 }
 
-.note {
+.note-item {
+  font-size: 1.125rem;
   padding: 1em;
   width: 100%;
   display: flex;
   gap: 0.5em;
   cursor: pointer;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 1);
 }
 
-.note>.deleteBin {
-  margin-left: auto;
+.note-item:hover {
+  transform: translateY(-5px);
+  transition: all 0.5s ease;
 }
 
 .note-text {
-  font-size: 1.125rem;
   font-weight: 600;
-  text-transform: uppercase;
-  text-align: start;
+  word-break: break-word;
+}
+
+.note-item>.deleteBin {
+  margin-left: auto;
 }
 
 .deleteBin,
 .checkBullet {
-  flex-shrink: 0;
   font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .deleteBin:hover,
@@ -113,29 +125,34 @@ body {
   transition: transform 0.2s ease-in;
 }
 
-.priority-wrapper {
+.priority-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
-
 }
 
-.priority {
+@media (width < 270px) {
+  .priority-wrapper {
+    flex-direction: column;
+  }
+}
+
+.priority-wrapper {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.priority-picker {
   width: 16px;
   height: 16px;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.check-priority-wrapper {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.priority:hover {
+.priority-picker:hover {
   transform: scale(2);
   transition: all 0.2s ease 0s;
 }
@@ -164,6 +181,7 @@ body {
 
 .crosNote {
   background-color: grey;
+  text-decoration: line-through;
 }
 
 .sort-text {
@@ -171,7 +189,6 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   background-color: #f5f5f5;
-  padding: 1em 1em;
-  margin-top: 0.5em;
+  padding: 0.5em;
   cursor: pointer;
 }
