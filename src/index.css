@@ -10,6 +10,10 @@
   --dark-text-color: #1c1c1c;
 }
 
+/* #1e1e20
+  #252529
+*/
+
 body {
   background-color: var(--dark-background-color-1);
   font-family: 'Karla', sans-serif;
