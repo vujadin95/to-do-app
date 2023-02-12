@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
+  padding: 1.5em;
 }
 
 .todo-container {
@@ -95,11 +96,6 @@ body {
   gap: 0.5em;
   cursor: pointer;
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 1);
-}
-
-.note-item:hover {
-  transform: translateY(-5px);
-  transition: all 0.5s ease;
 }
 
 .note-text {
