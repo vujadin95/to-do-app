@@ -7,6 +7,7 @@ function Input({ setNoteList, setIsSorted, setIsModalOn, isModalOn }) {
   const [note, setNote] = useState("");
   const [priority, setPriority] = useState(0);
 
+  // function that add new note to noteList array, resets priority, delete input value after note is added to noteList array and if input is empty when user clicks on the button to add note to noteList array it enables modal to show to the page
   function addNoteToList() {
     if (note) {
       setIsSorted(false);
@@ -21,8 +22,9 @@ function Input({ setNoteList, setIsSorted, setIsModalOn, isModalOn }) {
       setIsModalOn(true);
     }
   }
-
+  // function that assign priority to noteList array
   function handlePriority(e) {
+    // disable priority assigning if modal is active
     if (!isModalOn) return setPriority(e.target.id);
   }
 

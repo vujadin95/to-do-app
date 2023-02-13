@@ -9,11 +9,12 @@ function App() {
   const [isSorted, setIsSorted] = useState(false);
   const [isModalOn, setIsModalOn] = useState(false);
 
+  // if noteList is empty on first page loading, get data from localStorage if exist
   useEffect(() => {
     noteList.length === 0 &&
       setNoteList(JSON.parse(localStorage.getItem("userNotes")));
   }, []);
-
+  // update localStorage when noteList array changes
   useEffect(() => {
     localStorage.setItem("userNotes", JSON.stringify(noteList));
   }, [noteList]);

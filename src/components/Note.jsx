@@ -8,7 +8,7 @@ import {
 
 function Note(props) {
   const [isHovered, setIsHovered] = useState(false);
-
+  // object is needed for assigning classes according to color of selected priority
   const classLists = {
     0: "blue",
     1: "green",
@@ -16,7 +16,7 @@ function Note(props) {
     3: "orange",
     4: "red",
   };
-
+  // function that deletes selected note from noteList array
   function deleteNoteFromList(id) {
     if (!props.isModalOn) {
       props.setNoteList((prevState) =>
@@ -24,14 +24,16 @@ function Note(props) {
       );
     }
   }
-
+  // function that changing state of isChecked property from noteList array
   function handleCheck(id) {
+    // disable check icon if modal is active
     if (!props.isModalOn) {
       props.setNoteList((prevState) => {
         return prevState.map((item) =>
           item.id === id ? { ...item, isChecked: !item.isChecked } : item
         );
       });
+      // sort noteList array according to isChecked property
       props.sortIfChecked();
     }
   }

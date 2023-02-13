@@ -19,7 +19,6 @@ body {
   justify-content: center;
   height: 100vh;
   padding: 1.5em;
-
 }
 
 .todo-container {
@@ -34,12 +33,24 @@ body {
   margin: 0 auto;
   box-shadow: 3px 3px 25px 5px rgba(0, 0, 0, 1);
   position: relative;
-  box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 1);
+}
+
+@media (width <=280px) {
+  .todo-container {
+    padding: 1em;
+  }
 }
 
 .todo-logo {
   width: 100px;
   margin-bottom: 20px;
+}
+
+@media (width <=280px) {
+  .todo-logo {
+    transform: scale(0.7);
+    transition: transform 0.5s ease-in-out;
+  }
 }
 
 .input-container {
@@ -65,9 +76,18 @@ body {
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
 
+@media (width <=280px) {
+  .input-text {
+    font-size: 0.875rem;
+  }
+
+  .input-container {
+    padding: 14px;
+  }
+}
+
 .input-text:focus {
   outline: none;
-
 }
 
 .input-text:disabled {
@@ -86,6 +106,12 @@ body {
   text-transform: uppercase;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media (width <=280px) {
+  .add-note-btn {
+    font-size: 1rem;
+  }
 }
 
 .add-note-btn:hover {
@@ -117,6 +143,12 @@ body {
   word-break: break-word;
 }
 
+@media (width <=280px) {
+  .note-text {
+    font-size: 0.875rem;
+  }
+}
+
 .note-item>.deleteBin {
   margin-left: auto;
 }
@@ -141,10 +173,11 @@ body {
   justify-content: center;
   gap: 10px;
   width: 100%;
+  cursor: pointer;
 }
 
-@media (width < 270px) {
-  .priority-wrapper {
+@media (width<=280px) {
+  .priority-container {
     flex-direction: column;
   }
 }
@@ -159,11 +192,23 @@ body {
   font-weight: 700;
 }
 
+@media (width <=280px) {
+  .priority-container>p {
+    font-size: 0.875rem;
+  }
+}
+
 .priority-picker {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  cursor: pointer;
+}
+
+@media (width<=280px) {
+  .priority-picker {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .priority-picker:hover {
