@@ -1,16 +1,18 @@
 import Note from "./Note";
 
-function List({ noteList, setNoteList, isSorted, setIsSorted }) {
+function List({ noteList, setNoteList, isSorted, setIsSorted, isModalOn }) {
   //
   function sortByPriority() {
-    setNoteList((prevState) =>
-      prevState.slice().sort((a, b) => {
-        if (!a.isChecked && !b.isChecked) {
-          return b.priority - a.priority;
-        }
-      })
-    );
-    setIsSorted(true);
+    if (!isModalOn) {
+      setNoteList((prevState) =>
+        prevState.slice().sort((a, b) => {
+          if (!a.isChecked && !b.isChecked) {
+            return b.priority - a.priority;
+          }
+        })
+      );
+      setIsSorted(true);
+    }
   }
 
   function sortIfChecked() {
@@ -28,6 +30,7 @@ function List({ noteList, setNoteList, isSorted, setIsSorted }) {
         key={item.id}
         note={item}
         sortIfChecked={sortIfChecked}
+        isModalOn={isModalOn}
       />
     );
   });

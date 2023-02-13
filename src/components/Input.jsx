@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import Button from "./Button";
 
-function Input({ setNoteList, setIsSorted }) {
+function Input({ setNoteList, setIsSorted, setIsModalOn, isModalOn }) {
   const [isFocused, setIsFocused] = useState(false);
   const [note, setNote] = useState("");
   const [priority, setPriority] = useState(0);
@@ -18,17 +18,18 @@ function Input({ setNoteList, setIsSorted }) {
       ]);
       setNote("");
     } else {
-      alert("unesi belesku");
+      setIsModalOn(true);
     }
   }
 
   function handlePriority(e) {
-    setPriority(e.target.id);
+    if (!isModalOn) return setPriority(e.target.id);
   }
 
   return (
     <div className="input-container">
       <input
+        disabled={isModalOn}
         className="input-text"
         type="text"
         placeholder="Add new note"
@@ -38,7 +39,11 @@ function Input({ setNoteList, setIsSorted }) {
         onFocus={() => setIsFocused(true)}
       />
       {isFocused && (
-        <Button handlePriority={handlePriority} addNoteToList={addNoteToList} />
+        <Button
+          disabled={isModalOn}
+          handlePriority={handlePriority}
+          addNoteToList={addNoteToList}
+        />
       )}
     </div>
   );

@@ -18,18 +18,22 @@ function Note(props) {
   };
 
   function deleteNoteFromList(id) {
-    props.setNoteList((prevState) =>
-      prevState.filter((note) => note.id !== id)
-    );
+    if (!props.isModalOn) {
+      props.setNoteList((prevState) =>
+        prevState.filter((note) => note.id !== id)
+      );
+    }
   }
 
   function handleCheck(id) {
-    props.setNoteList((prevState) => {
-      return prevState.map((item) =>
-        item.id === id ? { ...item, isChecked: !item.isChecked } : item
-      );
-    });
-    props.sortIfChecked();
+    if (!props.isModalOn) {
+      props.setNoteList((prevState) => {
+        return prevState.map((item) =>
+          item.id === id ? { ...item, isChecked: !item.isChecked } : item
+        );
+      });
+      props.sortIfChecked();
+    }
   }
 
   return (

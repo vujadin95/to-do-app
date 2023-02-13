@@ -1,11 +1,13 @@
+import { useState, useEffect } from "react";
 import Input from "./components/Input";
 import List from "./components/List";
-import { useState, useEffect } from "react";
+import Modal from "./components/Modal";
 import Logo from "./images/logo.png";
 
 function App() {
   const [noteList, setNoteList] = useState([]);
   const [isSorted, setIsSorted] = useState(false);
+  const [isModalOn, setIsModalOn] = useState(false);
 
   useEffect(() => {
     noteList.length === 0 &&
@@ -18,13 +20,20 @@ function App() {
 
   return (
     <div className="todo-container">
+      {isModalOn && <Modal setIsModalOn={setIsModalOn} />}
       <img src={Logo} className="todo-logo" alt="todo logo" />
-      <Input setIsSorted={setIsSorted} setNoteList={setNoteList} />
+      <Input
+        setIsModalOn={setIsModalOn}
+        isModalOn={isModalOn}
+        setIsSorted={setIsSorted}
+        setNoteList={setNoteList}
+      />
       <List
         isSorted={isSorted}
         setIsSorted={setIsSorted}
         noteList={noteList}
         setNoteList={setNoteList}
+        isModalOn={isModalOn}
       />
     </div>
   );
