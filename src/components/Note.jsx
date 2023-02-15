@@ -34,10 +34,9 @@ function Note(props) {
         );
       });
       // sort noteList array according to isChecked property
-      props.sortIfChecked();
+      props.sortByPriority();
     }
   }
-
   return (
     <div
       className={`note-item ${classLists[props.note.priority]} ${

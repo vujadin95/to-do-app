@@ -19,6 +19,30 @@ function App() {
     localStorage.setItem("userNotes", JSON.stringify(noteList));
   }, [noteList]);
 
+  // disable sorting if modal is active
+
+  function sortByPriority() {
+    if (!isModalOn) {
+      setNoteList((prevState) =>
+        prevState.slice().sort((a, b) => {
+          if (a.isChecked || b.isChecked) {
+            return a.isChecked - b.isChecked;
+          } else if (!a.isChecked && !b.isChecked) {
+            return b.priority - a.priority;
+          }
+        })
+      );
+      setIsSorted((prevState) => !prevState);
+    }
+  }
+
+  // function that sorts all notes in noteList array that take in consideration isChecked state
+  function sortIfChecked() {
+    setNoteList((prevState) =>
+      prevState.slice().sort((a, b) => a.isChecked - b.isChecked)
+    );
+    setIsSorted((prevState) => !prevState);
+  }
   return (
     <div className="todo-container">
       {isModalOn && <Modal setIsModalOn={setIsModalOn} />}
@@ -28,6 +52,7 @@ function App() {
         isModalOn={isModalOn}
         setIsSorted={setIsSorted}
         setNoteList={setNoteList}
+        sortIfChecked={sortIfChecked}
       />
       <List
         isSorted={isSorted}
@@ -35,6 +60,8 @@ function App() {
         noteList={noteList}
         setNoteList={setNoteList}
         isModalOn={isModalOn}
+        sortByPriority={sortByPriority}
+        sortIfChecked={sortIfChecked}
       />
     </div>
   );

@@ -1,8 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import Button from "./Button";
 
-function Input({ setNoteList, setIsSorted, setIsModalOn, isModalOn }) {
+function Input({
+  setNoteList,
+  setIsSorted,
+  setIsModalOn,
+  isModalOn,
+  sortIfChecked,
+}) {
   const [isFocused, setIsFocused] = useState(false);
   const [note, setNote] = useState("");
   const [priority, setPriority] = useState(0);
@@ -17,6 +23,8 @@ function Input({ setNoteList, setIsSorted, setIsModalOn, isModalOn }) {
         ...prevNoteList,
         { id: nanoid(), text: note, isChecked: false, priority: priority },
       ]);
+      sortIfChecked();
+      setIsSorted((prevState) => !prevState);
       setNote("");
     } else {
       setIsModalOn(true);
