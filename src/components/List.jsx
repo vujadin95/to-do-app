@@ -21,7 +21,7 @@ function List({ noteList, setNoteList, isSorted, isModalOn, sortByPriority }) {
   // show 'sort by priority' only if there are more then two notes in noteList array and if isSorted state is false
   return (
     <div className="list-container">
-      {noteList && !isSorted && (
+      {noteList.length > 1 && !isSorted && (
         <p className="sort-text" onClick={sortByPriority}>
           Sort by Priority
         </p>

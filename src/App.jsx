@@ -11,8 +11,11 @@ function App() {
 
   // if noteList is empty on first page loading, get data from localStorage if exist
   useEffect(() => {
-    noteList.length === 0 &&
+    if (JSON.parse(localStorage.getItem("userNotes")) === null) {
+      setNoteList([]);
+    } else {
       setNoteList(JSON.parse(localStorage.getItem("userNotes")));
+    }
   }, []);
   // update localStorage when noteList array changes
   useEffect(() => {
@@ -35,7 +38,6 @@ function App() {
       setIsSorted((prevState) => !prevState);
     }
   }
-
   // function that sorts all notes in noteList array that take in consideration isChecked state
   function sortIfChecked() {
     setNoteList((prevState) =>
